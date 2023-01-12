@@ -422,20 +422,20 @@ namespace LAB11_10_01_2023
             a) Jaka jest średnia wartość elementów?
             b) Ile jest elementów > średniej? Który element ma wartość najbardziej zbliżoną do średniej?
             c) Ile jest kluczy z przypisaną wartością 55 lub 60?
-            ictionary4) Ile kluczy zawiera cyfrę 4 lub dużą literę?*/
+            d) Ile kluczy zawiera cyfrę 4 lub dużą literę?*/
             Console.WriteLine("\nZad. 4");
             char[] allLetters = "qwertyuiopasdfghjklzxcvbnmQWERTYUIOPASDFGHJKLZXCVBNM".ToCharArray();
-            Dictionary<string, int> ictionary4 = new Dictionary<string, int>(200);
-            while (ictionary4.Count < 200)
+            Dictionary<string, int> dictionary4 = new Dictionary<string, int>(200);
+            while (dictionary4.Count < 200)
             {
                 string tempKey = random.Next(10).ToString() + allLetters[random.Next(letters.Length)];
-                if (!ictionary4.ContainsKey(tempKey))
-                    ictionary4.Add(tempKey, random.Next(101));
+                if (!dictionary4.ContainsKey(tempKey))
+                    dictionary4.Add(tempKey, random.Next(101));
             }
 
             //a)
             int sum = 0;
-            foreach (KeyValuePair<string, int> kvp in ictionary4)
+            foreach (KeyValuePair<string, int> kvp in dictionary4)
                 sum += kvp.Value;
             double avg = (double)sum / 200;
             Console.WriteLine($"\na) : Średnia wartość elementów w słowniku to: {avg}");
@@ -443,7 +443,7 @@ namespace LAB11_10_01_2023
             //b)
             int greaterThanAvgCount = 0;
             KeyValuePair<string, int> closeKeyValuePair = new KeyValuePair<string, int>("null", int.MaxValue);
-            foreach (KeyValuePair<string, int> kvp in ictionary4)
+            foreach (KeyValuePair<string, int> kvp in dictionary4)
             {
                 if (kvp.Value > avg)
                 {
@@ -456,7 +456,7 @@ namespace LAB11_10_01_2023
             
             //c)
             int valueCount = 0;
-            foreach (KeyValuePair<string, int> kvp in ictionary4)
+            foreach (KeyValuePair<string, int> kvp in dictionary4)
             {
                 if (kvp.Value == 55 || kvp.Value == 60)
                     valueCount++;
@@ -465,9 +465,9 @@ namespace LAB11_10_01_2023
             
             //d)
             int keyCount = 0;
-            foreach (string s in ictionary4.Keys)
+            foreach (string s in dictionary4.Keys)
                 keyCount += Regex.IsMatch(s, @"(4)|(\p{Lu})") == true ? 1 : 0;
-            Console.WriteLine($"ictionary4) : Jest {keyCount} kluczy zawierający cyfrę 4 lub wielką literę");
+            Console.WriteLine($"dictionary4) : Jest {keyCount} kluczy zawierający cyfrę 4 lub wielką literę");
             #endregion
 
             #region testowanie kolekcji generycznych
